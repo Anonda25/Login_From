@@ -15,7 +15,7 @@ function Navber() {
           <NavLink to={"/regeister"}>regeister</NavLink>
         </li>
         <li>
-          <NavLink to={"/regeister2"}>regeister2</NavLink>
+          <NavLink to={"/signUp"}>SignUp</NavLink>
         </li>
       </>
     );
