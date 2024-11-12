@@ -1,8 +1,9 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "../../firebase_init";
 import { IoEyeOutline } from "react-icons/io5";
 import { GoEyeClosed } from "react-icons/go";
+import { Link } from "react-router-dom";
 function Sign_Up() {
   const [errormessage, setErrorMessage] = useState("");
   const [success, setSuccess]=useState(false)
@@ -40,6 +41,10 @@ function Sign_Up() {
       .then((res) => {
         console.log(res.user);
         setSuccess(true)
+         sendEmailVerification(auth.currentUser).then(() => {
+           console.log("please veridfy your email");
+         });
+       
       })
       .catch((error) => {
         console.log("error", error.message);
@@ -105,6 +110,8 @@ function Sign_Up() {
           </div>
         )}
         {success && <p className="text-green-700">sign up successfily</p>}
+      <p>you have already an accoutn please <Link to={'/login'} className="underline">Login</Link></p>
+      
       </form>
     </div>
   );
